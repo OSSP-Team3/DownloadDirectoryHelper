@@ -4,3 +4,16 @@
 // `nodeIntegration` is turned off. Use `preload.js` to
 // selectively enable features needed in the rendering
 // process.
+
+document.getElementById('getFilelist').addEventListener('click', (evt)=> {
+    evt.preventDefault();
+    console.log("abcd");
+    window.electron.showDownloadFiles();
+    // fs.readdir(testFolder, (err, files) => {
+    //     console.log("asdf");
+    //     files.forEach(file => {
+    //         var tag = document.createElement("p").appendChild(document.createTextNode(file));
+    //         document.getElementById("downloadFiles").appendChild(tag);
+    //     });
+    // });
+  });
