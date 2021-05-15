@@ -15,7 +15,7 @@
       <div class="d-inline-flex flex-column p-3 text-white bg-dark">
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
-          <li>
+          <li class="nav-item">
             <a href="./SeeDownload.html" class="nav-link text-white">
             <svg class="bi me-2" width="16" height="25"></svg>
             See Download
@@ -28,7 +28,7 @@
             </a>
           </li>
           <li>
-            <a href="./ManageNewFiles.html" class="nav-link text-white">
+            <a href="./ManageNewFiles.html" class="nav-link active">
             <svg class="bi me-2" width="16" height="25"></svg>
             Manage New Files
           </a>
@@ -44,7 +44,13 @@
       </div>
     </section>
     <section class="content-right">
-      <h2>Download Directory Helper</h2>
-    </section>
+      <div>
+        <h2>Manage New Files</h2>
+      </div>
+    </section>  
   </body>
+  <script src="./renderer.js">
+    window.popper = require("popper.js");
+    require("bootstrap");
+  </script>
 </html>
