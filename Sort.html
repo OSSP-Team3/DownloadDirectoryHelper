@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <title>Download Directory Manager</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <section class="content-left">
+      <div class="d-inline-flex flex-column p-3 text-white bg-dark">
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="./SeeDownload.html" class="nav-link text-white">
+            <svg class="bi me-2" width="16" height="25"></svg>
+            See Download
+            </a>
+          </li>
+          <li>
+            <a href="./Sort.html" class="nav-link active">
+            <svg class="bi me-2" width="16" height="25"></svg>
+            Sort
+            </a>
+          </li>
+          <li>
+            <a href="./ManageNewFiles.html" class="nav-link text-white">
+            <svg class="bi me-2" width="16" height="25"></svg>
+            Manage New Files
+          </a>
+          </li>
+          <li>
+            <a href="./Recommend.html" class="nav-link text-white">
+            <svg class="bi me-2" width="16" height="25"></svg>
+            Recommend
+            </a>
+          </li>
+        </ul>
+        <hr>
+      </div>
+    </section>
+    <section class="content-right">
+      <div class="d-flex">
+        <h2>Sort by:</h2>
+        <button id="sortByTag">Tag</button>
+        <button id="sortByDate">Download Date</button>
+        <button id="sortByFormat">File Format</button>
+      </div>
+      <ui id="downloadDates"></ui>
+      <ui id="fileFormats"></ui>
+    </section>
+  </body>
+  <script src="./renderer.js">
+    window.popper = require("popper.js");
+    require("bootstrap");
+  </script>
+</html>
