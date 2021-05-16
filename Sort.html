@@ -15,14 +15,14 @@
       <div class="d-inline-flex flex-column p-3 text-white bg-dark">
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
-          <li>
+          <li class="nav-item">
             <a href="./SeeDownload.html" class="nav-link text-white">
             <svg class="bi me-2" width="16" height="25"></svg>
             See Download
             </a>
           </li>
           <li>
-            <a href="./Sort.html" class="nav-link text-white">
+            <a href="./Sort.html" class="nav-link active">
             <svg class="bi me-2" width="16" height="25"></svg>
             Sort
             </a>
@@ -44,8 +44,18 @@
       </div>
     </section>
     <section class="content-right">
-      <h2>Download Directory Helper</h2>
+      <div class="d-flex">
+        <h2>Sort by:</h2>
+        <button id="sortByTag">Tag</button>
+        <button id="sortByDate">Download Date</button>
+        <button id="sortByFormat">File Format</button>
+      </div>
+      <ui id="downloadDates"></ui>
+      <ui id="fileFormats"></ui>
     </section>
->>>>>>> new_branch2
   </body>
+  <script src="./renderer.js">
+    window.popper = require("popper.js");
+    require("bootstrap");
+  </script>
 </html>
