@@ -6,9 +6,9 @@
 // process.
 
 document.getElementById('getFilelist').addEventListener('click', (evt)=> {
-    evt.preventDefault();
-    console.log("abcd");
-    window.electron.showDownloadFiles();
+  evt.preventDefault();
+  console.log("Load Files List");
+  window.electron.showDownloadFiles();
     // fs.readdir(testFolder, (err, files) => {
     //     console.log("asdf");
     //     files.forEach(file => {
@@ -16,4 +16,20 @@ document.getElementById('getFilelist').addEventListener('click', (evt)=> {
     //         document.getElementById("downloadFiles").appendChild(tag);
     //     });
     // });
+});
+
+document.getElementById('sortByDate').addEventListener('click', (evt)=> {
+  evt.preventDefault();
+  console.log("sortByDate");
+  window.electron.showDownloadDates();
+});
+  
+document.getElementById('sortByFormat').addEventListener('click', (evt)=> {
+    evt.preventDefault();
+    console.log("sortByForm");
+    window.electron.showFileFormats();
   });
+
+
+
+
