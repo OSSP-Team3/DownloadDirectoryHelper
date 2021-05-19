@@ -18,10 +18,17 @@ document.getElementById('sortByDate').addEventListener('click', (evt)=> {
 });
   
 document.getElementById('sortByFormat').addEventListener('click', (evt)=> {
-    evt.preventDefault();
-    console.log("sortByForm");
-    window.electron.showFileFormats();
-  });
+  evt.preventDefault();
+  console.log("sortByForm");
+  window.electron.showFileFormats();
+});
+
+document.getElementById('recommend').addEventListener('click', (evt)=> {
+  evt.preventDefault();
+  console.log("sortByForm");
+  window.electron.showInstallerFiles();
+});
+
 
 
 
