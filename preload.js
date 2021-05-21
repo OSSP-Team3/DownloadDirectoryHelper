@@ -1,4 +1,4 @@
-const { contextBridge} = require('electron')
+const { contextBridge } = require('electron')
 const testFolder = `C:\\Users\\82104\\Downloads`;
 var nlist = [];
 var dlist = [];
@@ -192,7 +192,6 @@ contextBridge.exposeInMainWorld(
             tag.appendChild(deleteButton);
             tag.appendChild(seeStatsButton);
             InstallerFilesNode.appendChild(tag);
-            
           }
         });
       });
