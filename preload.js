@@ -1,11 +1,12 @@
 const { contextBridge} = require('electron')
-const testFolder = `C:\\Users\\shbin\\Downloads`;
+const testFolder = `C:\\Users\\NT950XBE-X58\\Downloads`;
 var nlist = [];
 var dlist = [];
 var flist = [];
 
 const fs = require('fs');
 const filesize = require('filesize');
+const path = require('path');
 
 window.addEventListener('DOMContentLoaded', () => {
   const replaceText = (selector, text) => {
@@ -160,6 +161,49 @@ contextBridge.exposeInMainWorld(
     },
     getReadableFileSize: (size) => {
       return filesize(size);
+    },
+    showDownloadFilesInfo : () => {
+      console.log("Load Files List");
+      fs.readdir(testFolder, (err, files) => {
+        for(let i = 0 ; i<files.length ; i++){
+          const fileName = files[i];
+          const filePath = path.join(__dirname, '', fileName);
+          let filesize;
+
+          fs.stat(filePath, (err, fileInfo) => {  
+            if(fileInfo.size < 1024)
+              filesize = Math.round(fileInfo.size) +'B';
+            else if(fileInfo.size >= 1024 && fileInfo.size < 1024 * 1024)
+              filesize = Math.round(fileInfo.size/1024) +'KB';
+            else if(fileInfo.size >= 1024 * 1024 && fileInfo.size < 1024 * 1024 * 1024)
+              filesize = Math.round(fileInfo.size/(1024 * 1024)) +'MB';
+            else if(fileInfo.size >= 1024 * 1024 * 1024)
+              filesize = Math.round(fileInfo.size/(1024 * 1024 * 1024)) +'GB';
+
+            var data = files[i] + " " + fileInfo.atime.toString().split("GMT")[0] + " " + filesize;
+            var tag = document.createElement("li");
+            tag.appendChild(document.createTextNode(data));
+            document.getElementById("downloadFiles").appendChild(tag);
+          });
+        }
+      })
+    },
+    searchFiles : () => {
+      var input, filter, ul, li, a, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      ul = document.getElementById("downloadFiles");
+      li = ul.getElementsByTagName("li");
+      for (i = 0; i < li.length; i++) {
+        a = li[i];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          li[i].style.display = "";
+        }
+        else {
+          li[i].style.display = "none";
+        }
+      }
     }
   }
 )
