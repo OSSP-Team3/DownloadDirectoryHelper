@@ -1,5 +1,5 @@
 const { contextBridge} = require('electron')
-const testFolder = `C:\\Users\\NT950XBE-X58\\Downloads`;
+const testFolder = `C:\\Users\\shbin\\Downloads`;
 var nlist = [];
 var dlist = [];
 var flist = [];
@@ -185,6 +185,12 @@ contextBridge.exposeInMainWorld(
             tag.appendChild(document.createTextNode(data));
             document.getElementById("downloadFiles").appendChild(tag);
           });
+        }
+        files.sort();
+        for(var i=0;i<files.length;i++)
+        {
+          localStorage.setItem(files[i].toString(), JSON.stringify(files[i]));
+          console.log(localStorage.getItem(files[i]));
         }
       })
     },
