@@ -1,5 +1,5 @@
 const { contextBridge} = require('electron')
-const testFolder = `C:\\Users\\shbin\\Downloads`;
+const testFolder = `C:\\Users\\82104\\Downloads`;
 var nlist = [];
 var dlist = [];
 var flist = [];
