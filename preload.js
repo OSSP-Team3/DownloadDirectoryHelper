@@ -1,5 +1,5 @@
 const { contextBridge} = require('electron')
-const testFolder = `C:\\Users\\NT950XBE-X58\\Downloads`;
+const testFolder = `C:\\Users\\82104\\Downloads`;
 var nlist = [];
 var dlist = [];
 var flist = [];
@@ -167,9 +167,8 @@ contextBridge.exposeInMainWorld(
       fs.readdir(testFolder, (err, files) => {
         for(let i = 0 ; i<files.length ; i++){
           const fileName = files[i];
-          const filePath = path.join(__dirname, '', fileName);
+          const filePath = path.join(testFolder, '', fileName);
           let filesize;
-
           fs.stat(filePath, (err, fileInfo) => {  
             if(fileInfo.size < 1024)
               filesize = Math.round(fileInfo.size) +'B';
