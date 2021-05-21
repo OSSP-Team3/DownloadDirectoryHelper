@@ -1,5 +1,8 @@
 const { contextBridge} = require('electron')
-const testFolder = `C:\\Users\\82104\\Downloads`;
+const testFolder = `C:\\Users\\shbin\\Downloads`;
+var nlist = [];
+var dlist = [];
+var flist = [];
 
 const fs = require('fs');
 const filesize = require('filesize');
@@ -29,30 +32,77 @@ contextBridge.exposeInMainWorld(
       });
     },
     showDownloadDates : () => {
+      console.log("Show Download Dates");
+      while(document.getElementById("downloadDates").hasChildNodes())
+        document.getElementById("downloadDates").removeChild(document.getElementById("downloadDates").firstChild);
+      while(document.getElementById("fileFormats").hasChildNodes())
+        document.getElementById("fileFormats").removeChild(document.getElementById("fileFormats").firstChild);
+      fs.readdir(testFolder, (err, files) => {
+        nlist = [];
+        dlist = [];
         files.forEach((file) => {
           fs.stat(testFolder, (err, stat) => {
             var name = file.toString();
-            var date = stat.atime.toString();
-            var data = "Name: "+name+", Date: "+date;
-            var tag = document.createElement("li");
-            tag.appendChild(document.createTextNode(data));
-            document.getElementById("downloadDates").appendChild(tag);
+            var date = stat.atime.getFullYear().toString()+"."+(stat.atime.getMonth()+1).toString()+"."+stat.atime.getDate().toString();
+            nlist.push(name);
+            dlist.push(date);
           }); 
         });
       });
+      var list = [];
+        list = dlist.filter((element, index) => {
+          return dlist.indexOf(element)===index;
+        });
+        for(var i=0; i<list.length; i++)
+        {
+          var data = list[i] + " :";
+          for(var j=0; j<dlist.length; j++)
+          {
+            if(list[i]===dlist[j])
+            {
+              data += " " + nlist[j];
+            }
+          }
+          var tag = document.createElement("li");
+          tag.appendChild(document.createTextNode(data));
+          document.getElementById("downloadDates").appendChild(tag);
+        }
     },
     showFileFormats : () => {
       console.log("Show File Formats");
+      while(document.getElementById("downloadDates").hasChildNodes())
+        document.getElementById("downloadDates").removeChild(document.getElementById("downloadDates").firstChild);
+      while(document.getElementById("fileFormats").hasChildNodes())
+        document.getElementById("fileFormats").removeChild(document.getElementById("fileFormats").firstChild);
       fs.readdir(testFolder, (err, files) => {
+        nlist = [];
+        flist = [];
         files.forEach((file) => {
           var name = file.toString();
-          var format = name.split('.');
-          var data = "Name: "+name+", Format: "+format[format.length-1];
-          var tag = document.createElement("li");
-          tag.appendChild(document.createTextNode(data));
-          document.getElementById("fileFormats").appendChild(tag);
+          var f = name.split('.');
+          var format = f[f.length-1];
+          nlist.push(name);
+          flist.push(format);
         });
       });
+      var list = [];
+      list = flist.filter((element, index) => {
+        return flist.indexOf(element)===index;
+      });
+      for(var i=0;i<list.length;i++)
+      {
+        var data = list[i] + " :";
+        for(var j=0; j<dlist.length; j++)
+        {
+          if(list[i]===flist[j])
+          {
+            data += " " + nlist[j];
+          }
+        }
+        var tag = document.createElement("li");
+        tag.appendChild(document.createTextNode(data));
+        document.getElementById("fileFormats").appendChild(tag);
+      }
     },
     showInstallerFiles : () => {
       console.log("Show Setup/Installer Files");
