@@ -8,8 +8,8 @@ const fs = require('fs');
 const filesize = require('filesize');
 const path = require('path');
 
-window.addEventListener('DOMContentLoaded', () => {
-  const replaceText = (selector, text) => {
+window.addEventListener('DOMContentLoaded', () => { 
+  const replaceText = (selector, text) => { 
     const element = document.getElementById(selector);
     if (element) element.innerText = text;
   }
@@ -56,17 +56,45 @@ contextBridge.exposeInMainWorld(
         });
         for(var i=0; i<list.length; i++)
         {
-          var data = list[i] + " :";
+          let datas = [];
           for(var j=0; j<dlist.length; j++)
           {
             if(list[i]===dlist[j])
             {
-              data += " " + nlist[j];
+              datas.push(nlist[j]);
             }
           }
-          var tag = document.createElement("li");
-          tag.appendChild(document.createTextNode(data));
-          document.getElementById("downloadDates").appendChild(tag);
+          let tag = document.createElement("ui");
+          tag.classList.add("list-group", "my-2", "mx-3");
+
+          let item =document.createElement("li");
+          item.appendChild(document.createTextNode(list[i]));
+          item.classList.add("list-group-item", "fs-5", "bg-info");
+          tag.appendChild(item);
+
+          datas.forEach(data => {
+            let item = document.createElement("li");
+            item.classList.add("list-group-item", "fs-5");
+            item.appendChild(document.createTextNode(data))
+            tag.appendChild(item);
+
+            let deleteButton = document.createElement("button");
+            deleteButton.classList.add("btn", "btn-danger", "deleteButton", "mx-1");
+            deleteButton.style.float = "right";
+            deleteButton.value = data;
+            deleteButton.appendChild(document.createTextNode("Delete"));
+
+            let seeStatsButton = document.createElement("button");
+            seeStatsButton.classList.add("btn", "btn-success", "seeStatsButton");
+            seeStatsButton.style.float = "right";
+            seeStatsButton.value = data;
+            seeStatsButton.appendChild(document.createTextNode("See Stats"));
+
+            item.appendChild(deleteButton);
+            item.appendChild(seeStatsButton);
+          })
+          
+          document.getElementById("fileFormats").appendChild(tag);
         }
     },
     showFileFormats : () => {
@@ -92,16 +120,44 @@ contextBridge.exposeInMainWorld(
       });
       for(var i=0;i<list.length;i++)
       {
-        var data = list[i] + " :";
+        let datas = [];
         for(var j=0; j<dlist.length; j++)
         {
           if(list[i]===flist[j])
           {
-            data += " " + nlist[j];
+            datas.push(nlist[j]);
           }
         }
-        var tag = document.createElement("li");
-        tag.appendChild(document.createTextNode(data));
+        let tag = document.createElement("ui");
+        tag.classList.add("list-group", "my-2", "mx-3");
+
+        let item =document.createElement("li");
+        item.appendChild(document.createTextNode("." + list[i]));
+        item.classList.add("list-group-item", "fs-5", "bg-info");
+        tag.appendChild(item);
+
+        datas.forEach(data => {
+          let item = document.createElement("li");
+          item.classList.add("list-group-item", "fs-5");
+          item.appendChild(document.createTextNode(data))
+          tag.appendChild(item);
+
+          let deleteButton = document.createElement("button");
+          deleteButton.classList.add("btn", "btn-danger", "deleteButton", "mx-1");
+          deleteButton.style.float = "right";
+          deleteButton.value = data;
+          deleteButton.appendChild(document.createTextNode("Delete"));
+
+          let seeStatsButton = document.createElement("button");
+          seeStatsButton.classList.add("btn", "btn-success", "seeStatsButton");
+          seeStatsButton.style.float = "right";
+          seeStatsButton.value = data;
+          seeStatsButton.appendChild(document.createTextNode("See Stats"));
+
+          item.appendChild(deleteButton);
+          item.appendChild(seeStatsButton);
+        })
+        
         document.getElementById("fileFormats").appendChild(tag);
       }
     },
@@ -164,27 +220,32 @@ contextBridge.exposeInMainWorld(
     },
     showDownloadFilesInfo : () => {
       console.log("Load Files List");
+      let DownloadFilesNode = document.getElementById("downloadFiles");
+      while(DownloadFilesNode.hasChildNodes())
+        DownloadFilesNode.removeChild(DownloadFilesNode.firstChild);
       fs.readdir(testFolder, (err, files) => {
-        for(let i = 0 ; i<files.length ; i++){
-          const fileName = files[i];
-          const filePath = path.join(testFolder, '', fileName);
-          let filesize;
-          fs.stat(filePath, (err, fileInfo) => {  
-            if(fileInfo.size < 1024)
-              filesize = Math.round(fileInfo.size) +'B';
-            else if(fileInfo.size >= 1024 && fileInfo.size < 1024 * 1024)
-              filesize = Math.round(fileInfo.size/1024) +'KB';
-            else if(fileInfo.size >= 1024 * 1024 && fileInfo.size < 1024 * 1024 * 1024)
-              filesize = Math.round(fileInfo.size/(1024 * 1024)) +'MB';
-            else if(fileInfo.size >= 1024 * 1024 * 1024)
-              filesize = Math.round(fileInfo.size/(1024 * 1024 * 1024)) +'GB';
+        files.forEach(file => {
+          var tag = document.createElement("li");
+          tag.classList.add("list-group-item", "fs-5");
+          tag.appendChild(document.createTextNode(file));
+          DownloadFilesNode.appendChild(tag);
 
-            var data = files[i] + " " + fileInfo.atime.toString().split("GMT")[0] + " " + filesize;
-            var tag = document.createElement("li");
-            tag.appendChild(document.createTextNode(data));
-            document.getElementById("downloadFiles").appendChild(tag);
-          });
-        }
+          let deleteButton = document.createElement("button");
+          deleteButton.classList.add("btn", "btn-danger", "deleteButton", "mx-1");
+          deleteButton.style.float = "right";
+          deleteButton.value = file;
+          deleteButton.appendChild(document.createTextNode("Delete"));
+          
+
+          let seeStatsButton = document.createElement("button");
+          seeStatsButton.classList.add("btn", "btn-success", "seeStatsButton");
+          seeStatsButton.style.float = "right";
+          seeStatsButton.value = file;
+          seeStatsButton.appendChild(document.createTextNode("See Stats"));
+          
+          tag.appendChild(deleteButton);
+          tag.appendChild(seeStatsButton);
+        })
       })
     },
     searchFiles : () => {

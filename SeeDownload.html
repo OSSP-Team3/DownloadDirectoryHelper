@@ -16,6 +16,12 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
           <li class="nav-item">
+            <a href="./index.html" class="nav-link text-white">
+              <img src="./assets/home-2-24.png" height="23px"/>
+            &nbspHome
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="./SeeDownload.html" class="nav-link text-white active">
               <img src="./assets/folder-24.png" height="23px"/>
             &nbspSee Download
@@ -30,7 +36,7 @@
           <li>
             <a href="./ManageNewFiles.html" class="nav-link text-white">
               <img src="./assets/new-24.png" height="23px"/>
-              &nbspManage New Files
+              &nbspTag New Files
           </a>
           </li>
           <li>
@@ -45,11 +51,13 @@
     </section>
     <section class="content-right">
       <div>
-        <h2>Search in Download Directory</h2>
-        <button id = "getFilelist">Load Files List</button>
+        <div class="px-3 py-3 m-0 bg-white">
+          <h2 class="fw-bold text-decoration-underline">Search in Download Directory</h2>
+        
+        <button id = "getFilelist" class="btn btn-light">Refresh</button>
         <input type = "text" id = "myInput" onkeyup = "searchFiles()" placeholder = "Input file names">
-        <ul id = "downloadFiles"></ul>
-        <!-- You can also require other files to run in this process -->
+        <ul id = "downloadFiles"  class="ml-1 list-group list-group-flush"></ul>
+      </div>
       </div>
     </section>
   </body>

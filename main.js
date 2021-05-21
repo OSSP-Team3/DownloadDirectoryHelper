@@ -5,16 +5,17 @@ require('electron-reload')(__dirname);
 
 function createWindow () {
   const mainWindow = new BrowserWindow({
-    width: 900,
+    width: 955,
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     },
-    minWidth:900
+    minWidth:955
   })
   mainWindow.loadFile('index.html');
   mainWindow.webContents.openDevTools();
 }
+
 app.whenReady().then(() => {
   createWindow()
   app.on('activate', function () {
