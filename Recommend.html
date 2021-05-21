@@ -45,11 +45,20 @@
     </section>
     <section class="content-right">
       <div>
-        <h2>Recommend</h2>
+        
+        <div class="px-3 py-3 m-0 bg-white">
+          <h2 class="fw-bold text-decoration-underline">
+            Recommend : Deleting install/setup files
+            <button class = "d-inline btn btn-light" id = "getInstallerFilesBtn" >Refresh</button>
+          </h2>
+        </div>    
+        <div>
+          <ul class="ml-1 list-group list-group-flush" id = "InstallerFiles"> </ul>
+        </div>
       </div>  
     </section>
   </body>
-  <script src="./renderer.js">
+  <script src="./Recommend.js">
     window.popper = require("popper.js");
     require("bootstrap");
   </script>
