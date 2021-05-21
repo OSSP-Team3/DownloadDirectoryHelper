@@ -167,7 +167,7 @@ contextBridge.exposeInMainWorld(
       fs.readdir(testFolder, (err, files) => {
         for(let i = 0 ; i<files.length ; i++){
           const fileName = files[i];
-          const filePath = path.join(__dirname, '', fileName);
+          const filePath = path.join(testFolder, '', fileName);
           let filesize;
 
           fs.stat(filePath, (err, fileInfo) => {  
