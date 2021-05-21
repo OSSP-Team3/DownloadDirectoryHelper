@@ -1,5 +1,5 @@
 const { contextBridge} = require('electron')
-const testFolder = `C:\\Users\\82104\\Downloads`;
+const testFolder = `C:\\Users\\shbin\\Downloads`;
 var nlist = [];
 var dlist = [];
 var flist = [];
@@ -224,28 +224,33 @@ contextBridge.exposeInMainWorld(
       while(DownloadFilesNode.hasChildNodes())
         DownloadFilesNode.removeChild(DownloadFilesNode.firstChild);
       fs.readdir(testFolder, (err, files) => {
-        files.forEach(file => {
-          var tag = document.createElement("li");
-          tag.classList.add("list-group-item", "fs-5");
-          tag.appendChild(document.createTextNode(file));
-          DownloadFilesNode.appendChild(tag);
+        for(let i = 0 ; i<files.length ; i++){
+          const fileName = files[i];
+          const filePath = path.join(testFolder, '', fileName);
+          let filesize;
 
-          let deleteButton = document.createElement("button");
-          deleteButton.classList.add("btn", "btn-danger", "deleteButton", "mx-1");
-          deleteButton.style.float = "right";
-          deleteButton.value = file;
-          deleteButton.appendChild(document.createTextNode("Delete"));
-          
+          fs.stat(filePath, (err, fileInfo) => {  
+            if(fileInfo.size < 1024)
+              filesize = Math.round(fileInfo.size) +'B';
+            else if(fileInfo.size >= 1024 && fileInfo.size < 1024 * 1024)
+              filesize = Math.round(fileInfo.size/1024) +'KB';
+            else if(fileInfo.size >= 1024 * 1024 && fileInfo.size < 1024 * 1024 * 1024)
+              filesize = Math.round(fileInfo.size/(1024 * 1024)) +'MB';
+            else if(fileInfo.size >= 1024 * 1024 * 1024)
+              filesize = Math.round(fileInfo.size/(1024 * 1024 * 1024)) +'GB';
 
-          let seeStatsButton = document.createElement("button");
-          seeStatsButton.classList.add("btn", "btn-success", "seeStatsButton");
-          seeStatsButton.style.float = "right";
-          seeStatsButton.value = file;
-          seeStatsButton.appendChild(document.createTextNode("See Stats"));
-          
-          tag.appendChild(deleteButton);
-          tag.appendChild(seeStatsButton);
-        })
+            var data = files[i] + " " + fileInfo.atime.toString().split("GMT")[0] + " " + filesize;
+            var tag = document.createElement("li");
+            tag.appendChild(document.createTextNode(data));
+            document.getElementById("downloadFiles").appendChild(tag);
+          });
+        }
+        files.sort();
+        for(var i=0;i<files.length;i++)
+        {
+          localStorage.setItem(files[i].toString(), JSON.stringify(files[i]));
+          console.log(localStorage.getItem(files[i]));
+        }
       })
     },
     searchFiles : () => {
