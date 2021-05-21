@@ -47,13 +47,13 @@
       <div>
         <h2>Search in Download Directory</h2>
         <button id = "getFilelist">Load Files List</button>
-        <ui id="downloadFiles"></ui>
+        <input type = "text" id = "myInput" onkeyup = "searchFiles()" placeholder = "Input file names">
+        <ul id = "downloadFiles"></ul>
         <!-- You can also require other files to run in this process -->
-        <a class="btn btn-info">TEST BTN</a>
       </div>
     </section>
   </body>
-  <script src="./renderer.js">
+  <script src="./SeeDownload.js">
     window.popper = require("popper.js");
     require("bootstrap");
   </script>
