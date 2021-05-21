@@ -1,5 +1,4 @@
 document.querySelector('body').addEventListener('click', event => {
-    console.log("clicked" + event.target.className);
     if (event.target.className.includes('deleteButton')) {
         console.log(event.target.value);
         window.electron.removeFileByFileName(event.target.value);
@@ -8,7 +7,8 @@ document.querySelector('body').addEventListener('click', event => {
         deleted.style="float:right; padding-right:50px";
         deleted.appendChild(document.createTextNode("Deleted"));
         event.target.parentNode.appendChild(deleted);
-        event.target.parentNode.querySelector('.seeStatsButton').remove()
+        event.target.parentNode.querySelector('.seeStatsButton').remove();
+        if(event.target.className.includes('seeStatsButton')) event.target.parentNode.querySelector('table').remove();
         event.target.remove();
     }
     if(event.target.className.includes('seeStatsButton')) {
