@@ -20,11 +20,6 @@ main > * {
   box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
 }
 
-.bi {
-  vertical-align: -.125em;
-  pointer-events: none;
-  fill: currentColor;
-}
 
 .dropdown-toggle { outline: 0; }
 
@@ -88,10 +83,10 @@ ul
 
 .content-left{
   float: left;
-  width: 18%;
+  width: 25%;
 }
 
 .content-right{
   float: right;
-  width: 82%;
+  width: 75%;
 }

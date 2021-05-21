@@ -169,7 +169,6 @@ contextBridge.exposeInMainWorld(
           const fileName = files[i];
           const filePath = path.join(testFolder, '', fileName);
           let filesize;
-
           fs.stat(filePath, (err, fileInfo) => {  
             if(fileInfo.size < 1024)
               filesize = Math.round(fileInfo.size) +'B';
