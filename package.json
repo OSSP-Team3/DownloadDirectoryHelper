@@ -15,7 +15,7 @@
     "directory",
     "tag"
   ],
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "OSSP-Team3",
   "devDependencies": {
     "electron": "^12.0.9"
