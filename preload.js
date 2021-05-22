@@ -310,7 +310,6 @@ contextBridge.exposeInMainWorld(
           {
             var tag = document.createElement("li");
             tag.classList.add("list-group-item", "fs-5");
-            
             tag.appendChild(document.createTextNode(name));
 
             let tagState = document.createElement("button");

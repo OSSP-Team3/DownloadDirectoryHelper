@@ -11,42 +11,52 @@ document.querySelector('body').addEventListener('click', event => {
   {
     AddedInputPath = event.target.parentNode;
     filename=event.target.value;
-    if(AddedInputPath.querySelector("INPUT")){
-      AddedInputPath.removeChild(AddedInputPath.querySelector("INPUT"));
-      AddedInputPath.removeChild(document.getElementById('enter'));
+    if(AddedInputPath.querySelector("div")){
+      AddedInputPath.removeChild(AddedInputPath.querySelector("div"));
     }
     else {
+      let box = document.createElement("div");
+      box.classList.add("d-flex");
+      
       let input = document.createElement("INPUT");
       input.id="tag";
       input.setAttribute("type", "text");
-      AddedInputPath.appendChild(input);
-
+      
       let enterButton = document.createElement("button");
       enterButton.id="enter";
       enterButton.classList.add("btn", "btn-primary");
       enterButton.appendChild(document.createTextNode("Enter"));
-      AddedInputPath.appendChild(enterButton);
+
+      box.appendChild(input);
+      box.appendChild(enterButton);
+
+      AddedInputPath.appendChild(box);      
     }
   }
   if(event.target.className.includes('fixTag'))
   {
     AddedInputPath = event.target.parentNode;
     filename=event.target.value;
-    if(AddedInputPath.querySelector("INPUT")){
-      AddedInputPath.removeChild(AddedInputPath.querySelector("INPUT"));
-      AddedInputPath.removeChild(document.getElementById('enter'));
+    if(AddedInputPath.querySelector("div")){
+      AddedInputPath.removeChild(AddedInputPath.querySelector("div"));
     }
     else {
+      let box = document.createElement("div");
+      box.classList.add("d-flex");
+
       let input = document.createElement("INPUT");
       input.id="tag";
       input.setAttribute("type", "text");
-      AddedInputPath.appendChild(input);
 
       let enterButton = document.createElement("button");
       enterButton.id="enter";
       enterButton.classList.add("btn", "btn-primary");
       enterButton.appendChild(document.createTextNode("Enter"));
-      AddedInputPath.appendChild(enterButton);
+
+      box.appendChild(input);
+      box.appendChild(enterButton);
+
+      AddedInputPath.appendChild(box);
     }
   }
   if(event.target.className.includes('deleteTag'))
