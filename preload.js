@@ -1,5 +1,5 @@
 const { contextBridge } = require('electron')
-const testFolder = `C:\\Users\\shbin\\Downloads`;
+let testFolder = localStorage.getItem("testFolder"); 
 var nlist = [];
 var dlist = [];
 var flist = [];
@@ -22,6 +22,14 @@ window.addEventListener('DOMContentLoaded', () => {
 contextBridge.exposeInMainWorld(
   'electron',
   {
+    setDownloadPath : (input) => {
+      //C:\Users\{USER_ID}\Downloads => C:\\Users\\{USER_ID}\\Downloads 
+      input = input.replaceAll("\\","\\\\");
+      input = input.replaceAll("\\\\\\\\","\\\\");
+      console.log("set Download Path to '" + input + "'");
+      localStorage.setItem("testFolder", input);
+      console.log("changed to " + localStorage.getItem("testFolder"));
+    },
     showDownloadFilesInfo : () => {
       console.log("Load Files List");
       let DownloadFilesNode = document.getElementById("downloadFiles");
