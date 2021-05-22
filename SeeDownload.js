@@ -66,3 +66,4 @@ document.querySelector('body').addEventListener('click', event => {
 }
 });
 document.getElementById("getFilelist").style = "float:right";
+window.electron.showDownloadFilesInfo();
