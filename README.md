@@ -1,43 +1,31 @@
-# electron-quick-start
+# Download Directory Helper
+Download-directory-helper is a helpful tool for users who have difficulty in managing download directory. Users can sort, search and tag files of download directory. Also, the app recommends users to delete useless files.
 
-**Clone and run for a quick way to see Electron in action.**
+The Download-directory-helper project is using electron to build cross-platform desktop app.
 
-This is a minimal Electron application based on the [Quick Start Guide](https://electronjs.org/docs/tutorial/quick-start) within the Electron documentation.
+See below to see installation instructions.
+# A screenshot of app(+Example)
 
-**Use this app along with the [Electron API Demos](https://electronjs.org/#get-started) app for API code examples to help you get started.**
+# A link to a short demo video
+<hyperlink>
+  
+# Installation instructions
+1.	Download ZIP and unzip OR clone the repository (git clone)
+2.	Execute Setup file (download-directory-helper Setup 0.1.0.exe) from dist directory 
+3.	Follow the instructions in setup file to install download-directory-helper
 
-A basic Electron application needs just these files:
+# How to use
+1. When you enter the app, input the download folder path into the type box and click button for storing your download folder path. Please follow the instructions on the “Home menu”. App will check if you entered the appropriate file path format or not.
+2. You can switch the menu: “See Download”, “Sort”, “Tag New Files”, “Recommend” through clicking the sidebar on the left.
+* In “See Download”, you can see files with various information (added date, modified date, file size) by clicking button “See Stats” and search files by name of the file. Files are arranged in alphabetical order. Also, you can delete files by clicking “Delete” button.
+* In “Sort”, you can see files sorted with download dates, file format, and tag which you added through “Tag New Files” menu.
+* In “Tag New Files”, you can add tags or delete tags to each file to manage easily. These tags are stored in this app, so you don’t have to worry about being removed!
+* “Recommend” reminds you to delete unimportant or unused files (.exe, .msi and so on).
 
-- `package.json` - Points to the app's main file and lists its details and dependencies.
-- `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
-- `index.html` - A web page to render. This is the app's **renderer process**.
+# Collaborator
+* jimin9038  – Jimin Ha           <jimin9038@g.skku.edu>
+* shbin05     – Hyunbin Song  <shbin0519@gmail.com>
+* JiHoon915 – Jihoon Yoo       <gentleman915@g.skku.edu>
 
-You can learn more about each of these components within the [Quick Start Guide](https://electronjs.org/docs/tutorial/quick-start).
-
-## To Use
-
-To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
-
-```bash
-# Clone this repository
-git clone https://github.com/electron/electron-quick-start
-# Go into the repository
-cd electron-quick-start
-# Install dependencies
-npm install
-# Run the app
-npm start
-```
-
-## Resources for Learning Electron
-
-- [electronjs.org/docs](https://electronjs.org/docs) - all of Electron's documentation
-- [electronjs.org/community#boilerplates](https://electronjs.org/community#boilerplates) - sample starter apps created by the community
-- [electron/electron-quick-start](https://github.com/electron/electron-quick-start) - a very basic starter Electron app
-- [electron/simple-samples](https://github.com/electron/simple-samples) - small applications with ideas for taking them further
-- [electron/electron-api-demos](https://github.com/electron/electron-api-demos) - an Electron app that teaches you how to use Electron
-- [hokein/electron-sample-apps](https://github.com/hokein/electron-sample-apps) - small demo apps for the various Electron APIs
-
-## License
-
-[CC0 1.0 (Public Domain)](LICENSE.md)
+# License
+Download Directory Helper is available under the MIT license.
