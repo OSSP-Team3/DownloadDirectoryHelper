@@ -52,12 +52,15 @@
     <section class="content-right">
       <div>
         <div class="px-3 py-3 m-0 bg-white">
-          <h2 class="fw-bold text-decoration-underline">Search in Download Directory</h2>
-        
-        <button id = "getFilelist" class="btn btn-light">Refresh</button>
-        <input type = "text" id = "myInput" onkeyup = "searchFiles()" placeholder = "Input file names">
-        <ul id = "downloadFiles"  class="ml-1 list-group list-group-flush"></ul>
-      </div>
+          <h2 class="fw-bold text-decoration-underline">Search in Download Directory
+            <button id = "getFilelist" class="btn btn-light">Refresh</button>
+          </h2>
+          <div class="input-group mb-3 flex-nowrap">
+            <span class="input-group-text">Search in File name :</span>
+            <input type = "text" id = "myInput" onkeyup = "searchFiles()" placeholder = "Input File name">
+          </div>
+          <ul id = "downloadFiles"  class="ml-1 list-group list-group-flush"></ul>
+        </div>
       </div>
     </section>
   </body>
