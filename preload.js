@@ -224,13 +224,64 @@ contextBridge.exposeInMainWorld(
       }
     },
     showTagInfo : () => {
+      while(document.getElementById("tagInfo").hasChildNodes())
+        document.getElementById("tagInfo").removeChild(document.getElementById("tagInfo").firstChild);
       fs.readdir(testFolder, (err, files) => {
         files.forEach(file => {
-          var tag = document.createElement("li");
-          tag.appendChild(document.createTextNode(file));
-          document.getElementById("TagInfo").appendChild(tag);
+          var name = file.toString();
+          if(localStorage.getItem(name)===null)
+          {
+            var tag = document.createElement("li");
+            tag.classList.add("list-group-item", "fs-5");
+            tag.appendChild(document.createTextNode(name));
+
+            let tagState = document.createElement("button");
+            tagState.classList.add("btn", "btn-danger", "tagState", "mx-1");
+            tagState.style.float = "right";
+            tagState.appendChild(document.createTextNode("No Tag Now"));
+          
+
+            let inputTag = document.createElement("button");
+            inputTag.classList.add("btn", "btn-success", "inputTag");
+            inputTag.style.float = "right";
+            inputTag.value = name;
+            inputTag.appendChild(document.createTextNode("Input Tag"));
+          
+            tag.appendChild(inputTag);
+            tag.appendChild(tagState);
+            document.getElementById("tagInfo").appendChild(tag);
+          }
+          else
+          {
+            var tag = document.createElement("li");
+            tag.classList.add("list-group-item", "fs-5");
+            tag.appendChild(document.createTextNode(name));
+
+            let tagState = document.createElement("button");
+            tagState.classList.add("btn", "btn-primary", "tagState", "mx-1");
+            tagState.style.float = "right";
+            tagState.appendChild(document.createTextNode(localStorage.getItem(name)));
+          
+            let fixTag = document.createElement("button");
+            fixTag.classList.add("btn", "btn-success", "fixTag");
+            fixTag.style.float = "right";
+            fixTag.appendChild(document.createTextNode("Fix Tag"));
+
+            let deleteTag = document.createElement("button");
+            deleteTag.classList.add("btn", "btn-danger", "deleteTag");
+            deleteTag.style.float = "right";
+            deleteTag.appendChild(document.createTextNode("Delete Tag"));
+          
+            tag.appendChild(deleteTag);
+            tag.appendChild(fixTag);
+            tag.appendChild(tagState);
+            document.getElementById("tagInfo").appendChild(tag);
+          }
         });
       });
+    },
+    inputTag(name, tag){
+      localStorage.setItem(name, tag);
     },
     showInstallerFiles : () => {
       console.log("Show Setup/Installer Files");
