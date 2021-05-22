@@ -1,5 +1,5 @@
 const { contextBridge } = require('electron')
-let testFolder = localStorage.getItem("testFolder"); 
+let folderLocation = localStorage.getItem("folderLocation"); 
 var nlist = [];
 var tlist = [];
 var dlist = [];
@@ -28,15 +28,15 @@ contextBridge.exposeInMainWorld(
       input = input.replaceAll("\\","\\\\");
       input = input.replaceAll("\\\\\\\\","\\\\");
       console.log("set Download Path to '" + input + "'");
-      localStorage.setItem("testFolder", input);
-      console.log("changed to " + localStorage.getItem("testFolder"));
+      localStorage.setItem("folderLocation", input);
+      console.log("changed to " + localStorage.getItem("folderLocation"));
     },
     showDownloadFilesInfo : () => {
       console.log("Load Files List");
       let DownloadFilesNode = document.getElementById("downloadFiles");
       while(DownloadFilesNode.hasChildNodes())
         DownloadFilesNode.removeChild(DownloadFilesNode.firstChild);
-      fs.readdir(testFolder, (err, files) => {
+      fs.readdir(folderLocation, (err, files) => {
         files.forEach(file => {
           var tag = document.createElement("li");
           tag.classList.add("list-group-item", "fs-5");
@@ -79,16 +79,6 @@ contextBridge.exposeInMainWorld(
         }
       }
     },
-    /*showDownloadFiles : () => {
-      console.log("Load Files List");
-      fs.readdir(testFolder, (err, files) => {
-        files.forEach(file => {
-          var tag = document.createElement("li");
-          tag.appendChild(document.createTextNode(file));
-          document.getElementById("downloadFiles").appendChild(tag);
-        });
-      });
-    },*/
     showFileTags : () => {
       console.log("Show File Tags");
       while(document.getElementById("fileTags").hasChildNodes())
@@ -97,7 +87,7 @@ contextBridge.exposeInMainWorld(
         document.getElementById("downloadDates").removeChild(document.getElementById("downloadDates").firstChild);
       while(document.getElementById("fileFormats").hasChildNodes())
         document.getElementById("fileFormats").removeChild(document.getElementById("fileFormats").firstChild);
-      fs.readdir(testFolder, (err, files) => {
+      fs.readdir(folderLocation, (err, files) => {
         nlist = [];
         tlist = [];
         files.forEach((file) => {
@@ -169,12 +159,12 @@ contextBridge.exposeInMainWorld(
         document.getElementById("downloadDates").removeChild(document.getElementById("downloadDates").firstChild);
       while(document.getElementById("fileFormats").hasChildNodes())
         document.getElementById("fileFormats").removeChild(document.getElementById("fileFormats").firstChild);
-      fs.readdir(testFolder, (err, files) => {
+      fs.readdir(folderLocation, (err, files) => {
         nlist = [];
         dlist = [];
         files.forEach((file) => {
             var name = file.toString();
-            let stat = fs.statSync(path.join(testFolder, name));
+            let stat = fs.statSync(path.join(folderLocation, name));
             var date = stat.atime.getFullYear().toString()+"."+(stat.atime.getMonth()+1).toString()+"."+stat.atime.getDate().toString();
             nlist.push(name);
             dlist.push(date);
@@ -235,7 +225,7 @@ contextBridge.exposeInMainWorld(
         document.getElementById("downloadDates").removeChild(document.getElementById("downloadDates").firstChild);
       while(document.getElementById("fileFormats").hasChildNodes())
         document.getElementById("fileFormats").removeChild(document.getElementById("fileFormats").firstChild);
-      fs.readdir(testFolder, (err, files) => {
+      fs.readdir(folderLocation, (err, files) => {
         nlist = [];
         flist = [];
         files.forEach((file) => {
@@ -313,7 +303,7 @@ contextBridge.exposeInMainWorld(
       console.log("Show Tag Info");
       while(document.getElementById("tagInfo").hasChildNodes())
       document.getElementById("tagInfo").removeChild(document.getElementById("tagInfo").firstChild);
-      fs.readdir(testFolder, (err, files) => {
+      fs.readdir(folderLocation, (err, files) => {
         files.forEach(file => {
           var name = file.toString();
           if(localStorage.getItem(name)===null)
@@ -326,7 +316,6 @@ contextBridge.exposeInMainWorld(
             tagState.classList.add("btn", "btn-danger", "tagState", "mx-1");
             tagState.style.float = "right";
             tagState.appendChild(document.createTextNode("No Tag Now"));
-          
 
             let inputTag = document.createElement("button");
             inputTag.classList.add("btn", "btn-success", "inputTag");
@@ -382,7 +371,7 @@ contextBridge.exposeInMainWorld(
       let InstallerFilesNode = document.getElementById("InstallerFiles");
       while(InstallerFilesNode.hasChildNodes())
         InstallerFilesNode.removeChild(InstallerFilesNode.firstChild);
-      fs.readdir(testFolder, (err, files) => {
+      fs.readdir(folderLocation, (err, files) => {
         files.forEach((file) => {
           var name = file.split('.');
           if(name.length == 1)
@@ -413,15 +402,15 @@ contextBridge.exposeInMainWorld(
       });
     },
     seeStatsByFileName : (FileName) => {
-      console.log("See stats of "+ testFolder + "\\" + FileName);
-      statsObj = fs.statSync(testFolder + "\\" + FileName);
+      console.log("See stats of "+ folderLocation + "\\" + FileName);
+      statsObj = fs.statSync(folderLocation + "\\" + FileName);
       
       console.log(statsObj);
       return statsObj;
     },
     removeFileByFileName : (FileName) => {
-      console.log("Remove "+ testFolder + "\\" + FileName);
-      fs.unlink(testFolder + "\\" + FileName, (err) => {
+      console.log("Remove "+ folderLocation + "\\" + FileName);
+      fs.unlink(folderLocation + "\\" + FileName, (err) => {
         if(err){
           // File deletion failed
           console.error(err.message);
