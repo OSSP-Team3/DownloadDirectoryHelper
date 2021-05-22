@@ -1,6 +1,7 @@
 const { contextBridge } = require('electron')
 let testFolder = localStorage.getItem("testFolder"); 
 var nlist = [];
+var tlist = [];
 var dlist = [];
 var flist = [];
 
@@ -61,6 +62,7 @@ contextBridge.exposeInMainWorld(
       })
     },
     searchFiles : () => {
+      console.log("Search File");
       var input, filter, ul, li, a, i, txtValue;
       input = document.getElementById("myInput");
       filter = input.value.toUpperCase();
@@ -87,8 +89,82 @@ contextBridge.exposeInMainWorld(
         });
       });
     },*/
+    showFileTags : () => {
+      console.log("Show File Tags");
+      while(document.getElementById("fileTags").hasChildNodes())
+        document.getElementById("fileTags").removeChild(document.getElementById("fileTags").firstChild);
+      while(document.getElementById("downloadDates").hasChildNodes())
+        document.getElementById("downloadDates").removeChild(document.getElementById("downloadDates").firstChild);
+      while(document.getElementById("fileFormats").hasChildNodes())
+        document.getElementById("fileFormats").removeChild(document.getElementById("fileFormats").firstChild);
+      fs.readdir(testFolder, (err, files) => {
+        nlist = [];
+        tlist = [];
+        files.forEach((file) => {
+          var name = file.toString();
+          if(localStorage.getItem(name)===null)
+          {
+            tag="No Tag";
+          }
+          else
+          {
+            tag=localStorage.getItem(name);
+          }
+          nlist.push(name);
+          tlist.push(tag);
+        });
+      });
+      var list = [];
+      list = tlist.filter((element, index) => {
+        return tlist.indexOf(element)===index;
+      });
+      for(var i=0; i<list.length; i++)
+        {
+          let datas = [];
+          for(var j=0; j<tlist.length; j++)
+          {
+            if(list[i]===tlist[j])
+            {
+              datas.push(nlist[j]);
+            }
+          }
+          let tag = document.createElement("ui");
+          tag.classList.add("list-group", "my-2", "mx-3");
+
+          let item =document.createElement("li");
+          item.appendChild(document.createTextNode(list[i]));
+          item.classList.add("list-group-item", "fs-5", "bg-info");
+          tag.appendChild(item);
+
+          datas.forEach(data => {
+            let item = document.createElement("li");
+            item.classList.add("list-group-item", "fs-5");
+            item.appendChild(document.createTextNode(data))
+            tag.appendChild(item);
+
+            let deleteButton = document.createElement("button");
+            deleteButton.classList.add("btn", "btn-danger", "deleteButton", "mx-1");
+            deleteButton.style.float = "right";
+            deleteButton.value = data;
+            deleteButton.appendChild(document.createTextNode("Delete"));
+
+            let seeStatsButton = document.createElement("button");
+            seeStatsButton.classList.add("btn", "btn-success", "seeStatsButton");
+            seeStatsButton.style.float = "right";
+            seeStatsButton.value = data;
+            seeStatsButton.appendChild(document.createTextNode("See Stats"));
+
+            item.appendChild(deleteButton);
+            item.appendChild(seeStatsButton);
+          })
+          
+          document.getElementById("fileFormats").appendChild(tag);
+        }
+    },
     showDownloadDates : () => {
       console.log("Show Download Dates");
+      while(document.getElementById("fileTags").hasChildNodes())
+        document.getElementById("fileTags").removeChild(document.getElementById("fileTags").firstChild);
       while(document.getElementById("downloadDates").hasChildNodes())
         document.getElementById("downloadDates").removeChild(document.getElementById("downloadDates").firstChild);
       while(document.getElementById("fileFormats").hasChildNodes())
@@ -153,6 +229,8 @@ contextBridge.exposeInMainWorld(
     },
     showFileFormats : () => {
       console.log("Show File Formats");
+      while(document.getElementById("fileTags").hasChildNodes())
+        document.getElementById("fileTags").removeChild(document.getElementById("fileTags").firstChild);
       while(document.getElementById("downloadDates").hasChildNodes())
         document.getElementById("downloadDates").removeChild(document.getElementById("downloadDates").firstChild);
       while(document.getElementById("fileFormats").hasChildNodes())
@@ -232,8 +310,9 @@ contextBridge.exposeInMainWorld(
       }
     },
     showTagInfo : () => {
+      console.log("Show Tag Info");
       while(document.getElementById("tagInfo").hasChildNodes())
-        document.getElementById("tagInfo").removeChild(document.getElementById("tagInfo").firstChild);
+      document.getElementById("tagInfo").removeChild(document.getElementById("tagInfo").firstChild);
       fs.readdir(testFolder, (err, files) => {
         files.forEach(file => {
           var name = file.toString();
@@ -273,11 +352,13 @@ contextBridge.exposeInMainWorld(
             let fixTag = document.createElement("button");
             fixTag.classList.add("btn", "btn-success", "fixTag");
             fixTag.style.float = "right";
+            fixTag.value = name;
             fixTag.appendChild(document.createTextNode("Fix Tag"));
 
             let deleteTag = document.createElement("button");
             deleteTag.classList.add("btn", "btn-danger", "deleteTag");
             deleteTag.style.float = "right";
+            deleteTag.value = name;
             deleteTag.appendChild(document.createTextNode("Delete Tag"));
           
             tag.appendChild(deleteTag);
@@ -289,7 +370,12 @@ contextBridge.exposeInMainWorld(
       });
     },
     inputTag(name, tag){
+      console.log("Input Tag");
       localStorage.setItem(name, tag);
+    },
+    deleteTag(name){
+      console.log("Delete Tag");
+      localStorage.removeItem(name);
     },
     showInstallerFiles : () => {
       console.log("Show Setup/Installer Files");
@@ -345,6 +431,7 @@ contextBridge.exposeInMainWorld(
       });
     },
     getReadableFileSize: (size) => {
+      console.log("Get Readable File Size");
       return filesize(size);
     }
   }
