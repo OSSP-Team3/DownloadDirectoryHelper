@@ -1,5 +1,5 @@
 function checkDownloadPath() {
-  if(localStorage.getItem("testFolder") == null || localStorage.getItem("testFolder") == ""){
+  if(localStorage.getItem("folderLocation") == null || localStorage.getItem("folderLocation") == ""){
     document.getElementById("notice").innerHTML= "Important Task : Set your download folder path";
     document.getElementById("notice").classList.add("fw-bold");
     document.getElementById("howToSetDownloadPathGuide").innerHTML = "1. Open File Explorer<br/>2. Right-click your download directory<br/>3. Choose properties<br/>4. Choose 'Location' menu<br/>5. Copy Download directory location<br/>Example in Windows10 : C:\\Users\\{YOUR_USER_ID}\\Downloads "
@@ -7,13 +7,13 @@ function checkDownloadPath() {
     document.getElementById("howToSetDownloadPathGuide").innerHTML = "";
     document.getElementById("notice").innerHTML= "Change download folder path";
     document.getElementById("notice").classList.remove("fw-bold");
-    if(!localStorage.getItem("testFolder").includes("Download") && !localStorage.getItem("testFolder").includes("download")){
+    if(!localStorage.getItem("folderLocation").includes("Download") && !localStorage.getItem("folderLocation").includes("download")){
       let p = document.createElement('p');
       p.appendChild(document.createTextNode("It seems your download directory path is wrong!"))
       p.classList.add("text-danger", "fw-bold");
       document.getElementById("howToSetDownloadPathGuide").appendChild(p);
     }
-    document.getElementById("howToSetDownloadPathGuide").innerHTML += "<h5>Current location: " + localStorage.getItem("testFolder").replaceAll("\\\\","\\") + " </h5>1. Open File Explorer<br/>2. Right-click your download directory<br/>3. Choose properties<br/>4. Choose 'Location' menu<br/>5. Copy Download directory location<br/>Example in Windows10 : C:\\Users\\{YOUR_USER_ID}\\Downloads "
+    document.getElementById("howToSetDownloadPathGuide").innerHTML += "<h5>Current location: " + localStorage.getItem("folderLocation").replaceAll("\\\\","\\") + " </h5>1. Open File Explorer<br/>2. Right-click your download directory<br/>3. Choose properties<br/>4. Choose 'Location' menu<br/>5. Copy Download directory location<br/>Example in Windows10 : C:\\Users\\{YOUR_USER_ID}\\Downloads "
     
   }
 }
