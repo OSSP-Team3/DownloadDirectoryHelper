@@ -312,7 +312,44 @@ contextBridge.exposeInMainWorld(
           {
             var tag = document.createElement("li");
             tag.classList.add("list-group-item", "fs-5");
-            tag.appendChild(document.createTextNode(name));
+            var box = document.createElement("span");
+            box.innerHTML = name;
+            if(name.length<10)
+            {
+              while(box.innerHTML.length<350)
+              {
+                box.innerHTML+="&nbsp";
+              }
+            }
+            else if(name.length<15)
+            {
+              while(box.innerHTML.length<300)
+              {
+                box.innerHTML+="&nbsp";
+              }
+            }
+            else if(name.length<20)
+            {
+              while(box.innerHTML.length<250)
+              {
+                box.innerHTML+="&nbsp";
+              }
+            }
+            else if(name.length<25)
+            {
+              while(box.innerHTML.length<200)
+              {
+                box.innerHTML+="&nbsp";
+              }
+            }
+            else if(name.length<30)
+            {
+              while(box.innerHTML.length<150)
+              {
+                box.innerHTML+="&nbsp";
+              }
+            }
+            tag.appendChild(box);
 
             let tagState = document.createElement("button");
             tagState.classList.add("btn", "btn-danger", "tagState", "mx-1");
