@@ -4,7 +4,8 @@
   "description": "Using download directory helper, you can easily see download files by filtering, searching or using tags. Also, you can easily tag downloaded files.",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "deploy":"electron-builder --windows nsis:ia32"
   },
   "repository": "https://github.com/OSSP-Team3/DownloadDirectoryHelper",
   "keywords": [
@@ -24,5 +25,32 @@
     "electron-reload": "^1.5.0",
     "electron-store": "^8.0.0",
     "filesize": "^6.3.0"
+  },
+  "build": {
+    "productName": "download-directory-helper",
+    "appId": "com.electron.download-directory-helper",
+    "asar": true,
+    "protocols": {
+      "name": "download-directory-helper",
+      "schemes": [
+        "download-directory-helper"
+      ]
+    },
+    "win": {
+      "target": [
+        "zip",
+        "nsis"
+      ],
+      "icon": "./resources/installer/Icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "directories": {
+      "buildResources": "./resources/installer/",
+      "output": "./dist/",
+      "app": "."
+    }
   }
 }
