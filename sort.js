@@ -1,3 +1,9 @@
+document.getElementById('sortByTag').addEventListener('click', (evt)=> {
+  evt.preventDefault();
+  console.log("sortByTag");
+  window.electron.showFileTags();
+});
+
 document.getElementById('sortByDate').addEventListener('click', (evt)=> {
   evt.preventDefault();
   console.log("sortByDate");
