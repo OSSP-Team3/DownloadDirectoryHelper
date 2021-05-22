@@ -54,6 +54,7 @@ contextBridge.exposeInMainWorld(
       })
     },
     searchFiles : () => {
+      console.log("Search File");
       var input, filter, ul, li, a, i, txtValue;
       input = document.getElementById("myInput");
       filter = input.value.toUpperCase();
@@ -297,6 +298,7 @@ contextBridge.exposeInMainWorld(
       }
     },
     showTagInfo : () => {
+      console.log("Show Tag Info");
       while(document.getElementById("tagInfo").hasChildNodes())
       document.getElementById("tagInfo").removeChild(document.getElementById("tagInfo").firstChild);
       fs.readdir(testFolder, (err, files) => {
@@ -356,11 +358,12 @@ contextBridge.exposeInMainWorld(
       });
     },
     inputTag(name, tag){
+      console.log("Input Tag");
       localStorage.setItem(name, tag);
     },
     deleteTag(name){
+      console.log("Delete Tag");
       localStorage.removeItem(name);
-      console.log(1);
     },
     showInstallerFiles : () => {
       console.log("Show Setup/Installer Files");
@@ -416,6 +419,7 @@ contextBridge.exposeInMainWorld(
       });
     },
     getReadableFileSize: (size) => {
+      console.log("Get Readable File Size");
       return filesize(size);
     }
   }
