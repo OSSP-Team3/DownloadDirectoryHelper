@@ -18,19 +18,19 @@
           <li class="nav-item">
             <a href="./index.html" class="nav-link active">
               <img src="./assets/home-2-24.png" height="23px"/>
-            &nbspHome
+              &nbspHome
             </a>
           </li>
           <li class="nav-item">
             <a href="./SeeDownload.html" class="nav-link text-white">
               <img src="./assets/folder-24.png" height="23px"/>
-            &nbspSee Download
+              &nbspSee Download
             </a>
           </li>
           <li>
             <a href="./Sort.html" class="nav-link text-white">
-            <img src="./assets/sorting_icon.png" height="23px"/>
-            &nbspSort
+              <img src="./assets/sorting_icon.png" height="23px"/>
+              &nbspSort
             </a>
           </li>
           <li>
@@ -51,8 +51,18 @@
     </section>
     <section class="content-right">
       <div class="px-3 py-3 m-0 bg-white">
-        <h2 class="fw-bold text-decoration-underline">Download Directory Helper</h2>
+        <h2 class="fw-bold text-decoration-underline">Welcome to Download Directory Helper</h2>
+        <h3 id="notice">Change download folder path</h3>
+        <div class="input-group my-3">
+          <input type = "text" class="form-control" id = "DownloadPathInput"  placeholder=" Input download folder path"/>
+          <button class="btn btn-outline-secondary" id="setDownloadPathBtn">change download folder path</button>
+        </div>
+        <p id="howToSetDownloadPathGuide" ></p>
       </div>
     </section>
   </body>
+  <script src="./index.js">
+    window.popper = require("popper.js");
+    require("bootstrap");
+  </script>
 </html>
