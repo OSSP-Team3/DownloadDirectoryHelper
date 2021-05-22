@@ -155,6 +155,8 @@ contextBridge.exposeInMainWorld(
     },
     showDownloadDates : () => {
       console.log("Show Download Dates");
+      while(document.getElementById("fileTags").hasChildNodes())
+        document.getElementById("fileTags").removeChild(document.getElementById("fileTags").firstChild);
       while(document.getElementById("downloadDates").hasChildNodes())
         document.getElementById("downloadDates").removeChild(document.getElementById("downloadDates").firstChild);
       while(document.getElementById("fileFormats").hasChildNodes())
@@ -219,6 +221,8 @@ contextBridge.exposeInMainWorld(
     },
     showFileFormats : () => {
       console.log("Show File Formats");
+      while(document.getElementById("fileTags").hasChildNodes())
+        document.getElementById("fileTags").removeChild(document.getElementById("fileTags").firstChild);
       while(document.getElementById("downloadDates").hasChildNodes())
         document.getElementById("downloadDates").removeChild(document.getElementById("downloadDates").firstChild);
       while(document.getElementById("fileFormats").hasChildNodes())
