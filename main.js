@@ -12,8 +12,8 @@ function createWindow () {
     },
     minWidth:955
   })
+  mainWindow.setMenu(null);
   mainWindow.loadFile('index.html');
-  mainWindow.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {
