@@ -25,7 +25,7 @@ https://youtu.be/RqMvJT6FY8c
     - In “Tag New Files”, you can add tags or delete tags to each file to manage easily. These tags are stored in this app, so you don’t have to worry about being removed!
     - “Recommend” reminds you to delete unimportant or unused files (.exe, .msi and so on).
 
-# Collaborator
+# Team Member
 * [jimin9038](https://github.com/jimin9038)  – Jimin Ha           <jimin9038@g.skku.edu>
 * [shbin05](https://github.com/shbin05)    – Hyunbin Song  <shbin0519@gmail.com>
 * [JiHoon915](https://github.com/JiHoon915) – Jihoon Yoo       <gentleman915@g.skku.edu>
