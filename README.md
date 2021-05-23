@@ -26,9 +26,9 @@ https://youtu.be/RqMvJT6FY8c
     - “Recommend” reminds you to delete unimportant or unused files (.exe, .msi and so on).
 
 # Collaborator
-* jimin9038  – Jimin Ha           <jimin9038@g.skku.edu>
-* shbin05     – Hyunbin Song  <shbin0519@gmail.com>
-* JiHoon915 – Jihoon Yoo       <gentleman915@g.skku.edu>
+* [jimin9038](https://github.com/jimin9038)  – Jimin Ha           <jimin9038@g.skku.edu>
+* [shbin05](https://github.com/shbin05)    – Hyunbin Song  <shbin0519@gmail.com>
+* [JiHoon915](https://github.com/JiHoon915) – Jihoon Yoo       <gentleman915@g.skku.edu>
 
 # License
 Download Directory Helper is available under the MIT license.
