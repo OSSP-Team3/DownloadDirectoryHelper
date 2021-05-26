@@ -6,7 +6,7 @@ The Download-directory-helper project is using electron to build cross-platform 
 
 See below to see installation instructions.
 
-
+Feel free to ask questions or report bugs of our app through Issues tab! 
 
 # Demo video
 Click the link below to see demo video
