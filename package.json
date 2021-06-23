@@ -21,7 +21,7 @@
     "electron": "^12.0.9"
   },
   "dependencies": {
-    "bootstrap": "^5.0.1",
+    "bootstrap": "^5.0.2",
     "electron-reload": "^1.5.0",
     "electron-store": "^8.0.0",
     "filesize": "^6.3.0"
