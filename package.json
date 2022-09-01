@@ -18,7 +18,7 @@
   "license": "MIT",
   "author": "OSSP-Team3",
   "devDependencies": {
-    "electron": "^15.0.0"
+    "electron": "^20.1.1"
   },
   "dependencies": {
     "bootstrap": "^5.1.1",
